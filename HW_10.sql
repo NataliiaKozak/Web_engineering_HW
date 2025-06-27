@@ -35,10 +35,7 @@ FROM
     order_details;
     
 /*4 Присвойте ранг каждой строке, используя RANK по убыванию quantity*/
-SELECT 
-	order_id,
-	product_id,
-	quantity,
+SELECT *,
     RANK() OVER (ORDER BY quantity DESC) AS quantity_rank
 FROM 
     order_details;
@@ -46,10 +43,7 @@ FROM
 /*5  Из предыдущего запроса выберите только строки с рангом до 10 включительно*/
 SELECT *
 FROM (
-    SELECT 
-		order_id,
-		product_id,
-		quantity,
+    SELECT *,
         RANK() OVER (ORDER BY quantity DESC) AS quantity_rank
     FROM 
         order_details
